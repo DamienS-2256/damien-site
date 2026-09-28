@@ -1,0 +1,1061 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==========================
+   THEME VARIABLES
+   ========================== */
+
+:root {
+    /* DARK MODE = YOUR ORIGINAL COLOURS */
+    --bg: #142027;
+    --bg-deep: #0b151b;
+
+    --surface: rgba(20, 40, 48, 0.65);
+    --surface-strong: rgba(12, 29, 38, 0.9);
+
+    --text: #ffffff;
+    --muted: #b9e9f2;
+
+    --accent: #00ffff;
+    --accent-soft: rgba(0, 255, 255, 0.12);
+
+    --grid: rgba(0, 255, 255, 0.05);
+
+    --border: rgba(91, 193, 211, 0.2);
+
+    --particle: #00ffff;
+    --click: #00ffff;
+
+    --nav-bg: rgba(28, 71, 88, 0.96);
+    --nav-shadow: rgba(0, 0, 0, 0.25);
+}
+
+
+/* ==========================
+   LIGHT MODE
+   ========================== */
+
+body.light-mode {
+
+    --bg: #b9dff2;
+    --bg-deep: #dff4ff;
+
+    --surface: rgba(225, 246, 255, 0.82);
+    --surface-strong: rgba(218, 242, 252, 0.96);
+
+    --text: #123247;
+    --muted: #245d78;
+
+    --accent: #168ac2;
+    --accent-soft: rgba(22, 138, 194, 0.14);
+
+    --grid: rgba(22, 138, 194, 0.11);
+
+    --border: rgba(22, 138, 194, 0.3);
+
+    --particle: #55bce8;
+    --click: #319ed0;
+
+    --nav-bg: rgba(218, 242, 252, 0.97);
+    --nav-shadow: rgba(30, 90, 120, 0.16);
+}
+
+
+/* ==========================
+   BODY
+   ========================== */
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family: "Aldrich", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            var(--accent-soft),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 100, 255, 0.10),
+            transparent 25%
+        ),
+
+        var(--bg);
+
+    color: var(--text);
+
+    position: relative;
+
+    transition:
+        background 0.45s ease,
+        color 0.45s ease;
+}
+
+
+/* ==========================
+   MOVING GRID
+   ========================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: -50px;
+
+    background-image:
+
+        linear-gradient(
+            var(--grid) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            var(--grid) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    animation:
+        movingGrid 12s linear infinite;
+}
+
+
+@keyframes movingGrid {
+
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 50px 50px;
+    }
+}
+
+
+/* ==========================
+   SCREEN VIGNETTE
+   ========================== */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 45%,
+            rgba(0, 0, 0, 0.20)
+        );
+
+    z-index: -1;
+
+    transition:
+        opacity 0.45s ease;
+}
+
+
+body.light-mode::after {
+
+    opacity: 0.18;
+}
+
+
+/* ==========================
+   MOUSE GLOW
+   ========================== */
+
+.glow {
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    filter: blur(100px);
+
+    opacity: 0.18;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: -1;
+
+    transition:
+        background 0.45s ease,
+        opacity 0.45s ease;
+}
+
+
+/* ==========================
+   NAVIGATION
+   ========================== */
+
+.site-header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    width: 100%;
+}
+
+
+nav {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    padding: 15px;
+
+    background: var(--nav-bg);
+
+    border-bottom:
+        1px solid var(--border);
+
+    box-shadow:
+        0 4px 15px var(--nav-shadow);
+
+    transition:
+        background 0.45s ease,
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+}
+
+
+/* ==========================
+   NAV LINKS
+   ========================== */
+
+nav a,
+.theme-toggle {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-family: inherit;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+    line-height: 1;
+
+    padding: 9px 13px;
+
+    min-height: 38px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    background:
+        var(--accent-soft);
+
+    cursor: pointer;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease,
+        text-shadow 0.3s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* ==========================
+   NAV HOVER
+   ========================== */
+
+nav a:hover,
+.theme-toggle:hover {
+
+    color: var(--accent);
+
+    background:
+        var(--accent-soft);
+
+    border-color:
+        var(--accent);
+
+    text-shadow:
+
+        0 0 5px var(--accent),
+
+        0 0 14px var(--accent);
+
+    box-shadow:
+
+        0 0 10px
+        var(--accent-soft);
+
+    transform:
+        translateY(-2px)
+        scale(1.04);
+}
+
+
+/* ==========================
+   THEME BUTTON
+   ========================== */
+
+.theme-toggle {
+
+    white-space: nowrap;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+}
+
+
+/* ==========================
+   MAIN CONTENT
+   ========================== */
+
+main {
+
+    position: relative;
+
+    z-index: 1;
+
+    width:
+        min(
+            900px,
+            calc(100% - 40px)
+        );
+
+    margin: 0 auto;
+
+    padding:
+        50px 0 80px;
+}
+
+
+/* ==========================
+   SECTIONS
+   ========================== */
+
+section {
+
+    margin-bottom: 40px;
+
+    padding: 25px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 255, 255, 0.05);
+
+    backdrop-filter:
+        blur(5px);
+
+    transition:
+
+        transform 0.35s ease,
+
+        box-shadow 0.35s ease,
+
+        border-color 0.35s ease,
+
+        background 0.45s ease;
+}
+
+
+/* ==========================
+   SECTION HOVER
+   ========================== */
+
+main section:hover {
+
+    transform:
+        translateY(-12px)
+        scale(1.025);
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+
+        0 0 12px
+        var(--accent-soft),
+
+        0 0 30px
+        var(--accent-soft);
+}
+
+
+/* ==========================
+   HEADINGS
+   ========================== */
+
+h1,
+h2,
+p,
+li {
+
+    transition:
+
+        color 0.4s ease,
+
+        text-shadow 0.4s ease;
+}
+
+
+h1 {
+
+    margin-top: 0;
+
+    color:
+        var(--text);
+
+    font-size: 36px;
+
+    text-shadow:
+        0 0 8px
+        var(--accent-soft);
+
+    animation:
+
+        headingFloat
+        3.2s
+        ease-in-out
+        infinite
+        alternate,
+
+        headingGlow
+        2.5s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+h2 {
+
+    color:
+        var(--muted);
+
+    margin-top: 25px;
+
+    text-shadow:
+        0 0 7px
+        var(--accent-soft);
+
+    animation:
+        subheadingGlow
+        3s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* ==========================
+   HEADING FLOAT
+   ========================== */
+
+@keyframes headingFloat {
+
+    from {
+        transform:
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateY(-4px);
+    }
+}
+
+
+/* ==========================
+   HEADING GLOW
+   ========================== */
+
+@keyframes headingGlow {
+
+    from {
+
+        text-shadow:
+            0 0 6px
+            var(--accent-soft);
+    }
+
+    to {
+
+        text-shadow:
+
+            0 0 8px
+            var(--accent),
+
+            0 0 18px
+            var(--accent-soft);
+    }
+}
+
+
+/* ==========================
+   SUBHEADING GLOW
+   ========================== */
+
+@keyframes subheadingGlow {
+
+    from {
+
+        text-shadow:
+            0 0 4px
+            var(--accent-soft);
+    }
+
+    to {
+
+        text-shadow:
+            0 0 7px
+            var(--accent);
+    }
+}
+
+
+/* ==========================
+   TEXT
+   ========================== */
+
+p {
+
+    padding:
+        5px 0;
+
+    line-height:
+        1.7;
+}
+
+
+ul {
+
+    line-height:
+        1.8;
+
+    padding-left:
+        25px;
+}
+
+
+li {
+
+    margin-bottom:
+        8px;
+}
+
+
+/* ==========================
+   IMAGES
+   ========================== */
+
+img {
+
+    max-width:
+        100%;
+
+    height:
+        auto;
+
+    border-radius:
+        12px;
+
+    transition:
+
+        transform 0.4s ease,
+
+        filter 0.4s ease,
+
+        box-shadow 0.4s ease;
+}
+
+
+img:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.035);
+
+    filter:
+
+        drop-shadow(
+            0 0 8px
+            var(--accent)
+        )
+
+        drop-shadow(
+            0 0 20px
+            var(--accent-soft)
+        );
+}
+
+
+.featured-image {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    margin:
+        15px auto;
+}
+
+
+/* ==========================
+   VIDEOS
+   ========================== */
+
+video {
+
+    max-width:
+        100%;
+
+    height:
+        auto;
+
+    border-radius:
+        12px;
+
+    transition:
+
+        transform 0.4s ease,
+
+        filter 0.4s ease,
+
+        box-shadow 0.4s ease;
+}
+
+
+video:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.035);
+
+    filter:
+
+        drop-shadow(
+            0 0 8px
+            var(--accent)
+        )
+
+        drop-shadow(
+            0 0 20px
+            var(--accent-soft)
+        );
+}
+/* ==========================
+   SETUP PAGE ELEMENTS
+   ========================== */
+
+body.light-mode .secret-button,
+body.light-mode .tetris-button,
+body.light-mode .unlock-button {
+
+    color:
+        #168ac2;
+
+    border-color:
+        #168ac2;
+
+    background:
+        rgba(
+            22,
+            138,
+            194,
+            0.08
+        );
+}
+
+
+body.light-mode .secret-button:hover,
+body.light-mode .tetris-button:hover,
+body.light-mode .unlock-button:hover {
+
+    background:
+        #168ac2;
+
+    color:
+        #eaf8ff;
+
+    box-shadow:
+        0 0 18px
+        rgba(
+            22,
+            138,
+            194,
+            0.3
+        );
+}
+
+
+body.light-mode .tetris-board-container,
+body.light-mode .tetris-info,
+body.light-mode .secret-box {
+
+    background:
+        rgba(
+            225,
+            246,
+            255,
+            0.92
+        );
+
+    border-color:
+        rgba(
+            22,
+            138,
+            194,
+            0.42
+        );
+}
+
+
+body.light-mode #tetris-board,
+body.light-mode .secret-input {
+
+    background:
+        #dff4ff;
+
+    color:
+        #123247;
+}
+
+
+body.light-mode .tetris-info h3,
+body.light-mode .easter-egg h2 {
+
+    color:
+        #168ac2;
+}
+
+
+body.light-mode .tetris-stat {
+
+    background:
+        rgba(
+            22,
+            138,
+            194,
+            0.08
+        );
+}
+
+
+body.light-mode .tetris-stat strong {
+
+    color:
+        #123247;
+}
+
+
+body.light-mode .tetris-subtitle,
+body.light-mode .tetris-message,
+body.light-mode .box-status,
+body.light-mode .tetris-controls {
+
+    color:
+        #245d78;
+}
+
+
+body.light-mode .easter-egg {
+
+    border-color:
+        #168ac2;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(
+                22,
+                138,
+                194,
+                0.12
+            ),
+            transparent 65%
+        );
+}
+
+
+/* ==========================
+   MOBILE
+   ========================== */
+
+@media (max-width: 650px) {
+
+    main {
+
+        width:
+            min(
+                100% - 24px,
+                900px
+            );
+
+        padding-top:
+            30px;
+    }
+
+
+    section {
+
+        padding:
+            20px;
+    }
+
+
+    h1 {
+
+        font-size:
+            29px;
+    }
+
+
+    nav {
+
+        gap:
+            6px;
+
+        padding:
+            10px 7px;
+    }
+
+
+    nav a,
+    .theme-toggle {
+
+        font-size:
+            12px;
+
+        padding:
+            7px 8px;
+
+        min-height:
+            34px;
+    }
+
+
+    .glow {
+
+        width:
+            220px;
+
+        height:
+            220px;
+    }
+}
+
+
+/* ==========================
+   SCROLLBAR
+   ========================== */
+
+::-webkit-scrollbar {
+
+    width:
+        10px;
+}
+
+
+::-webkit-scrollbar-track {
+
+    background:
+        var(--bg-deep);
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        #5f8096;
+
+    border-radius:
+        10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        #739dad;
+
+    box-shadow:
+
+        0 0 5px
+        #4d6f83,
+
+        0 0 10px
+        #64818f,
+
+        0 0 20px
+        #709ebd;
+}
+
+
+/* ==========================
+   SMOOTH PAGE TRANSITION
+   ========================== */
+
+@view-transition {
+    navigation: auto;
+}
+
+
+::view-transition-old(root) {
+
+    animation:
+        page-out
+        0.25s
+        ease
+        both;
+}
+
+
+::view-transition-new(root) {
+
+    animation:
+        page-in
+        0.35s
+        ease
+        both;
+}
+
+
+@keyframes page-out {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+@keyframes page-in {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ==========================
+   PARTICLE CONTAINER
+   ========================== */
+
+#particle-container {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    overflow:
+        hidden;
+
+    z-index:
+        9999;
+}
+/* ==========================================================
+   PAGE LOAD LETTER FLICKER / FUTURISTIC DECODE EFFECT
+   ========================================================== */
+
+.boot-letter {
+    display: inline;
+    white-space: normal;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.boot-letter.boot-flicker {
+    text-shadow:
+        0 0 5px var(--accent),
+        0 0 10px var(--accent-soft);
+}
+
+
+/* ==========================
+   REDUCED MOTION
+   ========================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .boot-letter.boot-flicker {
+        text-shadow: none;
+    }
+}

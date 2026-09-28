@@ -1,0 +1,2728 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Setup — Damien</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/style1.css">
+
+  <style>
+
+    /* =========================================================
+       SECRET BUTTON
+       ========================================================= */
+
+    .secret-button-area {
+      text-align: center;
+      margin-top: 850px;
+      margin-bottom: 100px;
+    }
+
+    .secret-button {
+      padding: 14px 40px;
+
+      border: 1px solid rgba(54, 217, 255, 0.35);
+      border-radius: 8px;
+
+      background: rgba(3, 12, 19, 0.35);
+
+      color: rgba(120, 170, 185, 0.45);
+
+      font-family: inherit;
+      font-size: 16px;
+
+      cursor: pointer;
+
+      transition: 0.3s ease;
+
+      letter-spacing: 3px;
+    }
+
+    .secret-button:hover {
+      color: #36d9ff;
+
+      border-color: #36d9ff;
+
+      background: rgba(54, 217, 255, 0.08);
+
+      box-shadow:
+        0 0 15px rgba(54, 217, 255, 0.25);
+
+      transform: scale(1.05);
+    }
+
+
+    /* =========================================================
+       SECRET AREA
+       ========================================================= */
+
+    .secret-area {
+      display: none;
+
+      text-align: center;
+
+      margin-bottom: 120px;
+    }
+
+    .secret-area.show {
+      display: block;
+
+      animation:
+        secretAreaAppear 0.8s ease forwards;
+    }
+
+    @keyframes secretAreaAppear {
+
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =========================================================
+       TETRIS
+       ========================================================= */
+
+    .tetris-section {
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .tetris-subtitle {
+      color: #9fdff5;
+      margin-bottom: 20px;
+    }
+
+    .tetris-wrapper {
+      display: flex;
+
+      justify-content: center;
+
+      align-items: flex-start;
+
+      gap: 25px;
+
+      flex-wrap: wrap;
+
+      margin-top: 25px;
+    }
+
+    .tetris-board-container {
+      position: relative;
+
+      padding: 12px;
+
+      border: 2px solid #36d9ff;
+
+      border-radius: 12px;
+
+      background:
+        rgba(3, 15, 24, 0.9);
+
+      box-shadow:
+        0 0 15px rgba(54, 217, 255, 0.35),
+        inset 0 0 20px rgba(54, 217, 255, 0.08);
+    }
+
+    #tetris-board {
+      display: block;
+
+      background: #061018;
+
+      border:
+        1px solid rgba(54, 217, 255, 0.4);
+
+      max-width: 100%;
+
+      height: auto;
+    }
+
+    .tetris-info {
+      width: 190px;
+
+      min-width: 170px;
+
+      padding: 20px;
+
+      border:
+        1px solid rgba(54, 217, 255, 0.4);
+
+      border-radius: 12px;
+
+      background:
+        rgba(4, 20, 31, 0.85);
+
+      text-align: left;
+    }
+
+    .tetris-info h3 {
+      margin-top: 0;
+
+      color: #36d9ff;
+    }
+
+    .tetris-stat {
+      margin: 14px 0;
+
+      padding: 10px;
+
+      border-radius: 8px;
+
+      background:
+        rgba(54, 217, 255, 0.07);
+    }
+
+    .tetris-stat strong {
+      display: block;
+
+      color: #fff;
+
+      font-size: 20px;
+
+      margin-top: 4px;
+    }
+
+    .tetris-button {
+      width: 100%;
+
+      padding: 11px;
+
+      margin-top: 8px;
+
+      border:
+        1px solid #36d9ff;
+
+      border-radius: 7px;
+
+      background:
+        rgba(54, 217, 255, 0.1);
+
+      color: #36d9ff;
+
+      font-family: inherit;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+    }
+
+    .tetris-button:hover {
+      background: #36d9ff;
+
+      color: #061018;
+
+      transform:
+        scale(1.04);
+    }
+
+    .tetris-message {
+      min-height: 24px;
+
+      margin-top: 15px;
+
+      color: #9fdff5;
+
+      font-weight: bold;
+    }
+
+    .tetris-controls {
+      margin-top: 20px;
+
+      color: #8bbdcc;
+
+      font-size: 14px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       SECRET BOX
+       ========================================================= */
+
+    .secret-box-section {
+      text-align: center;
+
+      margin-top: 70px;
+    }
+
+    .secret-box {
+      max-width: 600px;
+
+      margin: 25px auto 0;
+
+      padding: 30px;
+
+      border:
+        2px solid #31515d;
+
+      border-radius: 15px;
+
+      background:
+        rgba(3, 12, 19, 0.85);
+
+      box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.3);
+
+      transition:
+        0.4s ease;
+    }
+
+    .secret-box.locked {
+      border-color: #555;
+    }
+
+    .secret-box.unlocked {
+      border-color: #36d9ff;
+
+      box-shadow:
+        0 0 25px rgba(54, 217, 255, 0.45),
+        inset 0 0 25px rgba(54, 217, 255, 0.08);
+
+      animation:
+        secretGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes secretGlow {
+
+      from {
+
+        box-shadow:
+          0 0 15px rgba(54, 217, 255, 0.25),
+          inset 0 0 15px rgba(54, 217, 255, 0.05);
+
+      }
+
+      to {
+
+        box-shadow:
+          0 0 35px rgba(54, 217, 255, 0.65),
+          inset 0 0 25px rgba(54, 217, 255, 0.12);
+
+      }
+
+    }
+
+    .box-icon {
+      font-size: 55px;
+
+      margin-bottom: 10px;
+    }
+
+    .secret-input {
+      width:
+        min(100%, 300px);
+
+      padding: 12px;
+
+      margin:
+        15px 0 10px;
+
+      border:
+        1px solid #36d9ff;
+
+      border-radius:
+        7px;
+
+      background:
+        #061018;
+
+      color:
+        white;
+
+      font-family:
+        inherit;
+
+      text-align:
+        center;
+
+      outline:
+        none;
+    }
+
+    .secret-input:focus {
+
+      box-shadow:
+        0 0 12px rgba(54, 217, 255, 0.4);
+
+    }
+
+    .unlock-button {
+
+      padding:
+        11px 22px;
+
+      border:
+        1px solid #36d9ff;
+
+      border-radius:
+        7px;
+
+      background:
+        rgba(54, 217, 255, 0.1);
+
+      color:
+        #36d9ff;
+
+      font-family:
+        inherit;
+
+      font-weight:
+        bold;
+
+      cursor:
+        pointer;
+
+      transition:
+        0.2s ease;
+    }
+
+    .unlock-button:hover {
+
+      background:
+        #36d9ff;
+
+      color:
+        #061018;
+
+      transform:
+        scale(1.04);
+
+    }
+
+    .box-status {
+
+      min-height:
+        25px;
+
+      margin-top:
+        15px;
+
+      color:
+        #9fdff5;
+
+    }
+
+
+    /* =========================================================
+       EASTER EGG
+       ========================================================= */
+
+    .easter-egg {
+
+      display:
+        none;
+
+      margin-top:
+        25px;
+
+      padding:
+        25px;
+
+      border:
+        2px solid #36d9ff;
+
+      border-radius:
+        12px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(54, 217, 255, 0.12),
+          transparent 65%
+        );
+    }
+
+    .easter-egg.show {
+
+      display:
+        block;
+
+      animation:
+        eggAppear 0.7s ease forwards;
+
+    }
+
+    @keyframes eggAppear {
+
+      from {
+
+        opacity:
+          0;
+
+        transform:
+          scale(0.8);
+
+      }
+
+      to {
+
+        opacity:
+          1;
+
+        transform:
+          scale(1);
+
+      }
+
+    }
+
+    .easter-egg h2 {
+
+      color:
+        #36d9ff;
+
+      font-size:
+        32px;
+
+      margin-top:
+        0;
+
+    }
+
+    .easter-egg .egg-big {
+
+      font-size:
+        60px;
+
+      margin:
+        10px 0;
+
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 650px) {
+
+      .secret-button-area {
+
+        margin-top:
+          600px;
+
+      }
+
+      .tetris-wrapper {
+
+        flex-direction:
+          column;
+
+        align-items:
+          center;
+
+      }
+
+      .tetris-info {
+
+        width:
+          100%;
+
+        max-width:
+          300px;
+
+      }
+
+      .tetris-board-container {
+
+        max-width:
+          100%;
+
+      }
+
+      #tetris-board {
+
+        width:
+          100%;
+
+        max-width:
+          300px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================================
+       MOUSE GLOW
+       ========================================================= -->
+
+  <div class="glow"></div>
+
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+<header class="site-header">
+
+  <nav>
+
+    <a href="index.html">Home</a>
+
+    <a href="about.html">About Me</a>
+
+    <a href="work.html">My Work</a>
+
+    <a href="setup.html">Setup</a>
+
+    <button
+      type="button"
+      class="theme-toggle"
+      id="theme-toggle"
+      aria-pressed="false"
+      aria-label="Switch to light mode"
+    >
+      ☀️ Light Mode
+    </button>
+
+  </nav>
+
+</header>
+
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+
+  <main>
+
+
+    <!-- =====================================================
+         MY SETUP
+         ===================================================== -->
+
+    <section>
+
+      <h1>My Setup</h1>
+
+      <h2>My Story</h2>
+
+      <p>
+
+        At home my setup consists of keyboard, mouse, laptop, monitor,
+        and a few plants (fake, I'm not watering them). I love to play
+        video games, make games, and talk with friends in my room at my
+        setup. I play a variety of games, and I'm trying to get into a
+        bunch of new genres.
+
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         GAMES / APPS
+         ===================================================== -->
+
+    <section>
+
+      <h2>
+        My Favourite/Most Used Games or Apps
+      </h2>
+
+      <ul>
+
+        <li>
+          CS Momentum Mod/MMod (Surf &amp; Bhop)
+        </li>
+
+        <li>
+          Discord
+        </li>
+
+        <li>
+          Forza Horizon 6
+        </li>
+
+        <li>
+          YouTube
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <!-- =====================================================
+         VIDEO
+         ===================================================== -->
+
+    <section class="video-section">
+
+      <h2>
+        Surf_Aquaflow
+      </h2>
+
+      <video
+        width="615"
+        height="360"
+        controls
+      >
+
+        <source
+          src="images/surf-aquaflow.mp4"
+          type="video/mp4"
+        >
+
+        Your browser does not support the video element.
+
+      </video>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECRET BUTTON
+         ===================================================== -->
+
+    <div class="secret-button-area">
+
+      <button
+        type="button"
+        class="secret-button"
+        id="secret-button"
+      >
+        ???
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         SECRET AREA
+         ===================================================== -->
+
+    <div
+      class="secret-area"
+      id="secret-area"
+    >
+
+
+      <!-- ===================================================
+           TETRIS
+           =================================================== -->
+
+      <section class="tetris-section">
+
+        <h2>
+          UNKNOWN TERMINAL
+        </h2>
+
+        <p class="tetris-subtitle">
+
+          You weren't supposed to find this.
+
+        </p>
+
+        <p>
+
+          Something seems to be hidden inside this setup.
+          Can you unlock it?
+
+        </p>
+
+
+        <div class="tetris-wrapper">
+
+
+          <!-- TETRIS BOARD -->
+
+          <div class="tetris-board-container">
+
+            <canvas
+              id="tetris-board"
+              width="240"
+              height="480"
+              aria-label="Tetris game board"
+            ></canvas>
+
+          </div>
+
+
+          <!-- GAME INFORMATION -->
+
+          <div class="tetris-info">
+
+            <h3>
+              GAME TERMINAL
+            </h3>
+
+
+            <div class="tetris-stat">
+
+              Lines
+
+              <strong id="tetris-lines">
+                0 / 10
+              </strong>
+
+            </div>
+
+
+            <div class="tetris-stat">
+
+              Score
+
+              <strong id="tetris-score">
+                0
+              </strong>
+
+            </div>
+
+
+            <div class="tetris-stat">
+
+              Status
+
+              <strong id="tetris-status">
+                READY
+              </strong>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="tetris-button"
+              id="tetris-start"
+            >
+              START GAME
+            </button>
+
+
+            <button
+              type="button"
+              class="tetris-button"
+              id="tetris-pause"
+            >
+              PAUSE
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div class="tetris-controls">
+
+          <strong>
+            Controls
+          </strong>
+
+          <br>
+
+          ← → Move &nbsp; | &nbsp;
+
+          ↑ Rotate &nbsp; | &nbsp;
+
+          ↓ Drop &nbsp; | &nbsp;
+
+          Space = Hard Drop
+
+        </div>
+
+
+        <!-- GAME MESSAGE -->
+
+        <div
+          class="tetris-message"
+          id="tetris-message"
+          aria-live="polite"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           LOCKED CODE TERMINAL
+           
+           THIS NOW STAYS VISIBLE THE ENTIRE TIME.
+           =================================================== -->
+
+      <section class="secret-box-section">
+
+
+        <h2>
+          ??? ACCESS TERMINAL
+        </h2>
+
+
+        <p>
+          A strange locked terminal is connected to the game.
+        </p>
+
+
+        <div
+          class="secret-box locked"
+          id="secret-box"
+        >
+
+
+          <!-- LOCK ICON -->
+
+          <div
+            class="box-icon"
+            id="box-icon"
+          >
+            🔒
+          </div>
+
+
+          <h3 id="box-title">
+            ACCESS LOCKED
+          </h3>
+
+
+          <p id="box-description">
+
+            Beat the game to obtain the access code.
+
+          </p>
+
+
+          <!-- CODE INPUT -->
+
+          <input
+            type="text"
+            id="secret-code"
+            class="secret-input"
+            placeholder="ENTER ACCESS CODE"
+            maxlength="20"
+            autocomplete="off"
+          >
+
+
+          <br>
+
+
+          <!-- UNLOCK BUTTON -->
+
+          <button
+            type="button"
+            class="unlock-button"
+            id="unlock-button"
+          >
+            UNLOCK
+          </button>
+
+
+          <!-- STATUS -->
+
+          <div
+            class="box-status"
+            id="box-status"
+            aria-live="polite"
+          ></div>
+
+
+          <!-- FINAL EASTER EGG -->
+
+          <div
+            class="easter-egg"
+            id="easter-egg"
+          >
+
+
+            <div class="egg-big">
+              🥚
+            </div>
+
+
+            <h2>
+              YOU FOUND THE EASTER EGG!
+            </h2>
+
+
+            <p>
+              You actually beat the game.
+            </p>
+
+
+            <p>
+              Welcome to the secret side
+              of my setup. 🎮
+            </p>
+
+
+            <p>
+
+              <strong>
+                Achievement Unlocked:
+              </strong>
+
+              <br>
+
+              "I Wonder What's Behind This..."
+
+            </p>
+
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================================================
+       EXISTING SITE EFFECTS
+       ========================================================= -->
+
+  <div id="particle-container"></div>
+
+  <div class="shockwave"></div>
+
+  <div class="screen-glow"></div>
+
+
+  <!-- =========================================================
+       SECRET BUTTON JAVASCRIPT
+       ========================================================= -->
+
+  <script>
+
+    (() => {
+
+      const secretButton =
+        document.getElementById(
+          "secret-button"
+        );
+
+
+      const secretArea =
+        document.getElementById(
+          "secret-area"
+        );
+
+
+      secretButton.addEventListener(
+        "click",
+        () => {
+
+          secretArea.classList.add(
+            "show"
+          );
+
+
+          setTimeout(() => {
+
+            secretArea.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }, 100);
+
+        }
+      );
+
+    })();
+
+  </script>
+
+
+  <!-- =========================================================
+       TETRIS JAVASCRIPT
+       ========================================================= -->
+
+  <script>
+
+    (() => {
+
+      /* =====================================================
+         ELEMENTS
+         ===================================================== */
+
+      const canvas =
+        document.getElementById(
+          "tetris-board"
+        );
+
+
+      const ctx =
+        canvas.getContext("2d");
+
+
+      const startButton =
+        document.getElementById(
+          "tetris-start"
+        );
+
+
+      const pauseButton =
+        document.getElementById(
+          "tetris-pause"
+        );
+
+
+      const linesDisplay =
+        document.getElementById(
+          "tetris-lines"
+        );
+
+
+      const scoreDisplay =
+        document.getElementById(
+          "tetris-score"
+        );
+
+
+      const statusDisplay =
+        document.getElementById(
+          "tetris-status"
+        );
+
+
+      const messageDisplay =
+        document.getElementById(
+          "tetris-message"
+        );
+
+
+      /* =====================================================
+         GAME SETTINGS
+         ===================================================== */
+
+      const ROWS = 20;
+
+      const COLS = 10;
+
+      const BLOCK = 24;
+
+      const WIN_LINES = 10;
+
+
+      /*
+       * NEW EASTER EGG CODE
+       */
+
+      const ACCESS_CODE =
+        "808707303567890";
+
+
+      /* =====================================================
+         COLORS
+         ===================================================== */
+
+      const COLORS = [
+
+        null,
+
+        "#36d9ff",
+
+        "#ffd84d",
+
+        "#b36bff",
+
+        "#49e68c",
+
+        "#ff6b8a",
+
+        "#ff9f43",
+
+        "#6b8cff"
+
+      ];
+
+
+      /* =====================================================
+         TETRIS PIECES
+         ===================================================== */
+
+      const SHAPES = [
+
+        [],
+
+        [
+          [1, 1, 1, 1]
+        ],
+
+        [
+          [2, 2],
+          [2, 2]
+        ],
+
+        [
+          [0, 3, 0],
+          [3, 3, 3]
+        ],
+
+        [
+          [0, 4, 4],
+          [4, 4, 0]
+        ],
+
+        [
+          [5, 5, 0],
+          [0, 5, 5]
+        ],
+
+        [
+          [6, 0, 0],
+          [6, 6, 6]
+        ],
+
+        [
+          [0, 0, 7],
+          [7, 7, 7]
+        ]
+
+      ];
+
+
+      /* =====================================================
+         GAME STATE
+         ===================================================== */
+
+      let board = [];
+
+      let player = null;
+
+      let score = 0;
+
+      let lines = 0;
+
+      let gameRunning = false;
+
+      let gamePaused = false;
+
+      let gameWon = false;
+
+      let dropCounter = 0;
+
+      let lastTime = 0;
+
+      let animationFrame = null;
+
+      const dropInterval = 750;
+
+
+      /* =====================================================
+         CREATE BOARD
+         ===================================================== */
+
+      function createBoard() {
+
+        return Array.from(
+          { length: ROWS },
+          () =>
+            Array(COLS).fill(0)
+        );
+
+      }
+
+
+      /* =====================================================
+         RESET
+         ===================================================== */
+
+      function resetGame() {
+
+        board =
+          createBoard();
+
+        score = 0;
+
+        lines = 0;
+
+        gameRunning = false;
+
+        gamePaused = false;
+
+        gameWon = false;
+
+        player = null;
+
+        dropCounter = 0;
+
+        lastTime = 0;
+
+        updateStats();
+
+        statusDisplay.textContent =
+          "READY";
+
+        messageDisplay.textContent =
+          "Clear 10 lines to reveal the access code.";
+
+        draw();
+
+      }
+
+
+      /* =====================================================
+         RANDOM PIECE
+         ===================================================== */
+
+      function randomPiece() {
+
+        const type =
+          Math.floor(
+            Math.random() * 7
+          ) + 1;
+
+
+        return {
+
+          matrix:
+            SHAPES[type].map(
+              row => [...row]
+            ),
+
+          pos: {
+
+            x:
+              Math.floor(
+                COLS / 2
+              ) - 2,
+
+            y: 0
+
+          }
+
+        };
+
+      }
+
+
+      /* =====================================================
+         SPAWN
+         ===================================================== */
+
+      function spawnPiece() {
+
+        player =
+          randomPiece();
+
+
+        if (
+          collides(
+            board,
+            player
+          )
+        ) {
+
+          gameOver();
+
+        }
+
+      }
+
+
+      /* =====================================================
+         COLLISION
+         ===================================================== */
+
+      function collides(
+        boardState,
+        piece
+      ) {
+
+        const matrix =
+          piece.matrix;
+
+        const pos =
+          piece.pos;
+
+
+        for (
+          let y = 0;
+          y < matrix.length;
+          y++
+        ) {
+
+
+          for (
+            let x = 0;
+            x < matrix[y].length;
+            x++
+          ) {
+
+
+            if (
+              matrix[y][x] === 0
+            ) {
+
+              continue;
+
+            }
+
+
+            const boardX =
+              x + pos.x;
+
+
+            const boardY =
+              y + pos.y;
+
+
+            if (
+              boardX < 0 ||
+              boardX >= COLS ||
+              boardY >= ROWS
+            ) {
+
+              return true;
+
+            }
+
+
+            if (
+              boardY >= 0 &&
+              boardState[boardY][boardX] !== 0
+            ) {
+
+              return true;
+
+            }
+
+          }
+
+        }
+
+
+        return false;
+
+      }
+
+
+      /* =====================================================
+         MERGE
+         ===================================================== */
+
+      function merge() {
+
+        player.matrix.forEach(
+          (row, y) => {
+
+            row.forEach(
+              (value, x) => {
+
+                if (
+                  value !== 0
+                ) {
+
+                  const boardY =
+                    player.pos.y + y;
+
+                  const boardX =
+                    player.pos.x + x;
+
+
+                  if (
+                    boardY >= 0 &&
+                    boardY < ROWS &&
+                    boardX >= 0 &&
+                    boardX < COLS
+                  ) {
+
+                    board[boardY][boardX] =
+                      value;
+
+                  }
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+      }
+
+
+      /* =====================================================
+         MOVE
+         ===================================================== */
+
+      function playerMove(
+        direction
+      ) {
+
+        if (
+          !gameRunning ||
+          gamePaused ||
+          gameWon
+        ) {
+
+          return;
+
+        }
+
+
+        player.pos.x +=
+          direction;
+
+
+        if (
+          collides(
+            board,
+            player
+          )
+        ) {
+
+          player.pos.x -=
+            direction;
+
+        }
+
+
+        draw();
+
+      }
+
+
+      /* =====================================================
+         DROP
+         ===================================================== */
+
+      function playerDrop() {
+
+        if (
+          !gameRunning ||
+          gamePaused ||
+          gameWon
+        ) {
+
+          return;
+
+        }
+
+
+        player.pos.y++;
+
+
+        if (
+          collides(
+            board,
+            player
+          )
+        ) {
+
+          player.pos.y--;
+
+          merge();
+
+          clearLines();
+
+
+          if (
+            !gameWon
+          ) {
+
+            spawnPiece();
+
+          }
+
+        }
+
+
+        dropCounter = 0;
+
+        draw();
+
+      }
+
+
+      /* =====================================================
+         HARD DROP
+         ===================================================== */
+
+      function hardDrop() {
+
+        if (
+          !gameRunning ||
+          gamePaused ||
+          gameWon
+        ) {
+
+          return;
+
+        }
+
+
+        while (
+          !collides(
+            board,
+            player
+          )
+        ) {
+
+          player.pos.y++;
+
+        }
+
+
+        player.pos.y--;
+
+
+        merge();
+
+        clearLines();
+
+
+        if (
+          !gameWon
+        ) {
+
+          spawnPiece();
+
+        }
+
+
+        dropCounter = 0;
+
+        draw();
+
+      }
+
+
+      /* =====================================================
+         ROTATION
+         ===================================================== */
+
+      function rotate(matrix) {
+
+        const rows =
+          matrix.length;
+
+        const cols =
+          matrix[0].length;
+
+        const result = [];
+
+
+        for (
+          let x = 0;
+          x < cols;
+          x++
+        ) {
+
+          const newRow = [];
+
+
+          for (
+            let y = rows - 1;
+            y >= 0;
+            y--
+          ) {
+
+            newRow.push(
+              matrix[y][x]
+            );
+
+          }
+
+
+          result.push(
+            newRow
+          );
+
+        }
+
+
+        return result;
+
+      }
+
+
+      /* =====================================================
+         PLAYER ROTATION
+         ===================================================== */
+
+      function playerRotate() {
+
+        if (
+          !gameRunning ||
+          gamePaused ||
+          gameWon
+        ) {
+
+          return;
+
+        }
+
+
+        const oldMatrix =
+          player.matrix;
+
+
+        const oldX =
+          player.pos.x;
+
+
+        const oldY =
+          player.pos.y;
+
+
+        player.matrix =
+          rotate(
+            player.matrix
+          );
+
+
+        const kicks = [
+
+          [0, 0],
+
+          [-1, 0],
+
+          [1, 0],
+
+          [-2, 0],
+
+          [2, 0],
+
+          [0, -1]
+
+        ];
+
+
+        for (
+          const [xOffset, yOffset]
+          of kicks
+        ) {
+
+
+          player.pos.x =
+            oldX + xOffset;
+
+
+          player.pos.y =
+            oldY + yOffset;
+
+
+          if (
+            !collides(
+              board,
+              player
+            )
+          ) {
+
+            draw();
+
+            return;
+
+          }
+
+        }
+
+
+        player.matrix =
+          oldMatrix;
+
+
+        player.pos.x =
+          oldX;
+
+
+        player.pos.y =
+          oldY;
+
+
+        draw();
+
+      }
+
+
+      /* =====================================================
+         CLEAR LINES
+         ===================================================== */
+
+      function clearLines() {
+
+        let linesCleared = 0;
+
+
+        outer:
+
+        for (
+          let y = ROWS - 1;
+          y >= 0;
+          y--
+        ) {
+
+
+          for (
+            let x = 0;
+            x < COLS;
+            x++
+          ) {
+
+
+            if (
+              board[y][x] === 0
+            ) {
+
+              continue outer;
+
+            }
+
+          }
+
+
+          board.splice(
+            y,
+            1
+          );
+
+
+          board.unshift(
+            Array(COLS).fill(0)
+          );
+
+
+          y++;
+
+          linesCleared++;
+
+        }
+
+
+        if (
+          linesCleared > 0
+        ) {
+
+
+          lines +=
+            linesCleared;
+
+
+          const points = [
+
+            0,
+
+            100,
+
+            300,
+
+            500,
+
+            800
+
+          ];
+
+
+          score +=
+            points[linesCleared] ||
+            800;
+
+
+          updateStats();
+
+
+          if (
+            lines >= WIN_LINES
+          ) {
+
+            winGame();
+
+          }
+
+        }
+
+      }
+
+
+      /* =====================================================
+         UPDATE STATS
+         ===================================================== */
+
+      function updateStats() {
+
+        linesDisplay.textContent =
+          `${Math.min(
+            lines,
+            WIN_LINES
+          )} / ${WIN_LINES}`;
+
+
+        scoreDisplay.textContent =
+          score;
+
+      }
+
+
+      /* =====================================================
+         DRAW BLOCK
+         ===================================================== */
+
+      function drawBlock(
+        x,
+        y,
+        value
+      ) {
+
+        ctx.fillStyle =
+          COLORS[value];
+
+
+        ctx.fillRect(
+
+          x * BLOCK,
+
+          y * BLOCK,
+
+          BLOCK,
+
+          BLOCK
+
+        );
+
+
+        ctx.strokeStyle =
+          "rgba(255,255,255,0.18)";
+
+
+        ctx.strokeRect(
+
+          x * BLOCK,
+
+          y * BLOCK,
+
+          BLOCK,
+
+          BLOCK
+
+        );
+
+
+        ctx.fillStyle =
+          "rgba(255,255,255,0.16)";
+
+
+        ctx.fillRect(
+
+          x * BLOCK + 3,
+
+          y * BLOCK + 3,
+
+          BLOCK - 6,
+
+          3
+
+        );
+
+      }
+
+
+      /* =====================================================
+         DRAW MATRIX
+         ===================================================== */
+
+      function drawMatrix(
+        matrix,
+        offset
+      ) {
+
+        matrix.forEach(
+          (row, y) => {
+
+
+            row.forEach(
+              (value, x) => {
+
+
+                if (
+                  value !== 0
+                ) {
+
+
+                  drawBlock(
+
+                    x + offset.x,
+
+                    y + offset.y,
+
+                    value
+
+                  );
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+      }
+
+
+      /* =====================================================
+         DRAW
+         ===================================================== */
+
+      function draw() {
+
+        ctx.fillStyle =
+          "#061018";
+
+
+        ctx.fillRect(
+
+          0,
+
+          0,
+
+          canvas.width,
+
+          canvas.height
+
+        );
+
+
+        for (
+          let y = 0;
+          y < ROWS;
+          y++
+        ) {
+
+
+          for (
+            let x = 0;
+            x < COLS;
+            x++
+          ) {
+
+
+            if (
+              board[y][x] !== 0
+            ) {
+
+
+              drawBlock(
+
+                x,
+
+                y,
+
+                board[y][x]
+
+              );
+
+            }
+
+          }
+
+        }
+
+
+        if (
+          player
+        ) {
+
+
+          drawMatrix(
+
+            player.matrix,
+
+            player.pos
+
+          );
+
+        }
+
+
+        ctx.strokeStyle =
+          "rgba(54,217,255,0.08)";
+
+
+        for (
+          let x = 0;
+          x <= COLS;
+          x++
+        ) {
+
+
+          ctx.beginPath();
+
+
+          ctx.moveTo(
+
+            x * BLOCK,
+
+            0
+
+          );
+
+
+          ctx.lineTo(
+
+            x * BLOCK,
+
+            canvas.height
+
+          );
+
+
+          ctx.stroke();
+
+        }
+
+
+        for (
+          let y = 0;
+          y <= ROWS;
+          y++
+        ) {
+
+
+          ctx.beginPath();
+
+
+          ctx.moveTo(
+
+            0,
+
+            y * BLOCK
+
+          );
+
+
+          ctx.lineTo(
+
+            canvas.width,
+
+            y * BLOCK
+
+          );
+
+
+          ctx.stroke();
+
+        }
+
+      }
+
+
+      /* =====================================================
+         GAME LOOP
+         ===================================================== */
+
+      function update(
+        time = 0
+      ) {
+
+        if (
+          !gameRunning ||
+          gamePaused ||
+          gameWon
+        ) {
+
+          return;
+
+        }
+
+
+        const deltaTime =
+          time - lastTime;
+
+
+        lastTime =
+          time;
+
+
+        dropCounter +=
+          deltaTime;
+
+
+        if (
+          dropCounter >
+          dropInterval
+        ) {
+
+          playerDrop();
+
+        }
+
+
+        draw();
+
+
+        animationFrame =
+          requestAnimationFrame(
+            update
+          );
+
+      }
+
+
+      /* =====================================================
+         START GAME
+         ===================================================== */
+
+      function startGame() {
+
+        if (
+          animationFrame
+        ) {
+
+          cancelAnimationFrame(
+            animationFrame
+          );
+
+        }
+
+
+        board =
+          createBoard();
+
+
+        score = 0;
+
+        lines = 0;
+
+        gameRunning = true;
+
+        gamePaused = false;
+
+        gameWon = false;
+
+
+        dropCounter = 0;
+
+        lastTime =
+          performance.now();
+
+
+        spawnPiece();
+
+
+        statusDisplay.textContent =
+          "PLAYING";
+
+
+        messageDisplay.textContent =
+          "Clear 10 lines to unlock the secret.";
+
+
+        updateStats();
+
+
+        animationFrame =
+          requestAnimationFrame(
+            update
+          );
+
+      }
+
+
+      /* =====================================================
+         PAUSE
+         ===================================================== */
+
+      function togglePause() {
+
+        if (
+          !gameRunning ||
+          gameWon
+        ) {
+
+          return;
+
+        }
+
+
+        gamePaused =
+          !gamePaused;
+
+
+        if (
+          gamePaused
+        ) {
+
+          statusDisplay.textContent =
+            "PAUSED";
+
+
+          messageDisplay.textContent =
+            "Game paused.";
+
+
+          draw();
+
+        } else {
+
+          statusDisplay.textContent =
+            "PLAYING";
+
+
+          messageDisplay.textContent =
+            "Keep going!";
+
+
+          lastTime =
+            performance.now();
+
+
+          animationFrame =
+            requestAnimationFrame(
+              update
+            );
+
+        }
+
+      }
+
+
+      /* =====================================================
+         GAME OVER
+         ===================================================== */
+
+      function gameOver() {
+
+        gameRunning = false;
+
+        gamePaused = false;
+
+
+        statusDisplay.textContent =
+          "GAME OVER";
+
+
+        messageDisplay.textContent =
+          "Game over! Try again.";
+
+
+        if (
+          animationFrame
+        ) {
+
+          cancelAnimationFrame(
+            animationFrame
+          );
+
+        }
+
+      }
+
+
+      /* =====================================================
+         WIN GAME
+         ===================================================== */
+
+      function winGame() {
+
+        gameWon = true;
+
+        gameRunning = false;
+
+
+        statusDisplay.textContent =
+          "UNLOCKED";
+
+
+        /*
+         * Give the NEW code.
+         */
+
+        messageDisplay.innerHTML =
+
+          "🎉 YOU BEAT TETRIS!<br>" +
+
+          "Your access code is: " +
+
+          "<strong>" +
+
+          ACCESS_CODE +
+
+          "</strong>";
+
+
+        /*
+         * Update the locked terminal.
+         */
+
+        const description =
+          document.getElementById(
+            "box-description"
+          );
+
+
+        description.textContent =
+          "The game is complete. Enter the access code to unlock this terminal.";
+
+
+        /*
+         * Stop animation.
+         */
+
+        if (
+          animationFrame
+        ) {
+
+          cancelAnimationFrame(
+            animationFrame
+          );
+
+        }
+
+
+        draw();
+
+      }
+
+
+      /* =====================================================
+         KEYBOARD CONTROLS
+         ===================================================== */
+
+      document.addEventListener(
+        "keydown",
+        event => {
+
+
+          /*
+           * Don't control Tetris while
+           * typing the access code.
+           */
+
+          if (
+            document.activeElement &&
+            document.activeElement.id ===
+              "secret-code"
+          ) {
+
+            return;
+
+          }
+
+
+          if (
+            !gameRunning ||
+            gamePaused ||
+            gameWon
+          ) {
+
+            return;
+
+          }
+
+
+          if (
+            event.key ===
+            "ArrowLeft"
+          ) {
+
+            event.preventDefault();
+
+            playerMove(-1);
+
+          }
+
+
+          else if (
+            event.key ===
+            "ArrowRight"
+          ) {
+
+            event.preventDefault();
+
+            playerMove(1);
+
+          }
+
+
+          else if (
+            event.key ===
+            "ArrowDown"
+          ) {
+
+            event.preventDefault();
+
+            playerDrop();
+
+          }
+
+
+          else if (
+            event.key ===
+            "ArrowUp"
+          ) {
+
+            event.preventDefault();
+
+            playerRotate();
+
+          }
+
+
+          else if (
+            event.code ===
+            "Space"
+          ) {
+
+            event.preventDefault();
+
+            hardDrop();
+
+          }
+
+        }
+      );
+
+
+      /* =====================================================
+         BUTTONS
+         ===================================================== */
+
+      startButton.addEventListener(
+        "click",
+        startGame
+      );
+
+
+      pauseButton.addEventListener(
+        "click",
+        togglePause
+      );
+
+
+      /* =====================================================
+         INITIALIZE
+         ===================================================== */
+
+      resetGame();
+
+    })();
+
+  </script>
+
+
+  <!-- =========================================================
+       SECRET CODE TERMINAL JAVASCRIPT
+       ========================================================= -->
+
+  <script>
+
+    (() => {
+
+
+      /*
+       * NEW EASTER EGG CODE
+       */
+
+      const ACCESS_CODE =
+        "808707303567890";
+
+
+      const input =
+        document.getElementById(
+          "secret-code"
+        );
+
+
+      const unlockButton =
+        document.getElementById(
+          "unlock-button"
+        );
+
+
+      const box =
+        document.getElementById(
+          "secret-box"
+        );
+
+
+      const boxIcon =
+        document.getElementById(
+          "box-icon"
+        );
+
+
+      const boxTitle =
+        document.getElementById(
+          "box-title"
+        );
+
+
+      const boxDescription =
+        document.getElementById(
+          "box-description"
+        );
+
+
+      const boxStatus =
+        document.getElementById(
+          "box-status"
+        );
+
+
+      const easterEgg =
+        document.getElementById(
+          "easter-egg"
+        );
+
+
+      /* =====================================================
+         UNLOCK
+         ===================================================== */
+
+      function unlockBox() {
+
+        const entered =
+          input.value
+            .trim()
+            .toUpperCase();
+
+
+        if (
+          entered === ""
+        ) {
+
+          boxStatus.textContent =
+            "Enter an access code.";
+
+          return;
+
+        }
+
+
+        if (
+          entered === ACCESS_CODE
+        ) {
+
+
+          box.classList.remove(
+            "locked"
+          );
+
+
+          box.classList.add(
+            "unlocked"
+          );
+
+
+          boxIcon.textContent =
+            "🔓";
+
+
+          boxTitle.textContent =
+            "ACCESS GRANTED";
+
+
+          boxDescription.textContent =
+            "The mysterious box has opened.";
+
+
+          boxStatus.textContent =
+            "ACCESS CODE ACCEPTED.";
+
+
+          input.style.display =
+            "none";
+
+
+          unlockButton.style.display =
+            "none";
+
+
+          easterEgg.classList.add(
+            "show"
+          );
+
+
+        } else {
+
+
+          boxStatus.textContent =
+            "❌ ACCESS DENIED — Incorrect code.";
+
+
+          input.value = "";
+
+
+          input.focus();
+
+        }
+
+      }
+
+
+      /* =====================================================
+         BUTTON
+         ===================================================== */
+
+      unlockButton.addEventListener(
+        "click",
+        unlockBox
+      );
+
+
+      /* =====================================================
+         ENTER KEY
+         ===================================================== */
+
+      input.addEventListener(
+        "keydown",
+        event => {
+
+
+          if (
+            event.key === "Enter"
+          ) {
+
+            event.preventDefault();
+
+            unlockBox();
+
+          }
+
+        }
+      );
+
+    })();
+
+  </script>
+
+
+  <!-- =========================================================
+       YOUR EXISTING SITE JAVASCRIPT
+       ========================================================= -->
+
+  <script src="js/script1.js"></script>
+
+
+</body>
+
+</html>
+```
